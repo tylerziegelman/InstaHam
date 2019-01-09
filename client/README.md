@@ -1,3 +1,11 @@
+Make create login function
+    -creating button and forms
+    -submit button with alert to make sure it works
+    -make the alert show what text was typed in input
+    -submit button should call a function 
+    -use ant design for buttons
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
