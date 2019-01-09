@@ -1,5 +1,6 @@
 'use strict'
 
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -19,3 +20,4 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+Route.post('/create', "UserController.createUser")
