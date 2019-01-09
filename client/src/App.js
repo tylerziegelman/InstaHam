@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import ReactDOM from 'react-dom'
+//import logo from './logo.svg';
 import './App.css';
 import Button from 'antd/lib/button';
+import Login from './Login'
+
+
 
 
 
 class App extends Component {
-constructor(){
-  super()
-  
-}
+
 
   render() {
     return (
       <div className="App">
+        <Login />
         <Button type="default">Button</Button>
       </div>
     );
@@ -21,3 +23,4 @@ constructor(){
 }
 
 export default App;
+
