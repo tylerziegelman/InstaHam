@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios"
 // import mountNode from 'react-dom'
 // import reactDOM from 'react-dom'
 // import ReactDOM from 'reactDOM'
@@ -48,13 +49,14 @@ export default class Login extends React.Component {
   }
   //e.preventDefault() keeps page from refreshing after clicking submit
   handleSubmit = e => {
+    axios.post("/create")
     e.preventDefault()
 
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
         First Name: ${this.state.firstName}
-        Last NamE: ${this.state.lastName}
+        Last Name: ${this.state.lastName}
         Email: ${this.state.email}
         Password: ${this.state.password}
       `)
