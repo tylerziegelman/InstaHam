@@ -1,9 +1,6 @@
 import React from 'react';
 import axios from "axios"
-// import mountNode from 'react-dom'
-// import reactDOM from 'react-dom'
-// import ReactDOM from 'reactDOM'
-
+import Header from './Header'
 
 //email Regexpression is for the password so it can be any characters has .com or .net on the end
 const emailRegex = RegExp(
@@ -104,7 +101,10 @@ export default class Login extends React.Component {
   render() {
     const { formErrors } = this.state
     return (
+      <>
+      <Header/>
       <div className="wrapper">
+      
         <div className="form-wrapper">
           <h1>Create Account</h1>
           <form onSubmit={this.handleSubmit} noValidate>
@@ -173,7 +173,7 @@ export default class Login extends React.Component {
         </div>
 
       </div>
-
+    </>
     )
   }
 
