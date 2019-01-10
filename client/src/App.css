@@ -11,9 +11,8 @@
   
   background-color: #258ea6;
   display: flex;
-
-  
 }
+
 
 .form-wrapper {
   margin: 0 auto;
@@ -147,4 +146,103 @@ input.error {
   z-index: 100;
 } */
 /* end of css for createLogin */
+
+/* styles for modal form */
+.ant-modal-body {
+  text-align: center;
+ 
+}
+
+.ant-modal-header, .ant-modal-body, .post-textarea, .ant-modal-footer, .ant-btn {
+  border: 2px solid black;
+}
+
+.ant-modal-title {
+  font-weight: 900;
+  font-size: 1.7em;
+  color:#000;
+ 
+}
+
+
+.ant-modal-header {
+  border-bottom: none;
+}
+
+.ant-modal-footer {
+  border-top: none;
+}
+
+.ant-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   
+}
+
+.ant-modal-body .ant-btn {
+  height: 80px;
+  width: 150px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5em;
+  text-shadow: 2px 2px 2px black;
+  background-color: #519e8a;
+}
+
+.ant-modal-body .ant-btn:hover {
+    transform: scale(1.1)
+}
+
+.ant-modal-body .ant-btn:active {
+  transform: scale(1.08);
+}
+
+
+
+
+
+.ant-modal-content {
+  box-shadow: 1px 1px 12px 3px black;
+}
+
+.post-textarea {
+  width: 60%;
+  height: 100px;
+  margin-top: 15px;
+ 
+}
+
+.ant-modal-footer div button {
+  width: 100px;
+  height: 50px;
+  color: #fff;
+  background-color: rgba(253,100,100);
+  font-weight: 700;
+  text-shadow: 2px 2px 2px black;
+  font-size: 1.12em;
+}
+
+.ant-modal-footer div button:hover {
+  background-color: rgba(253,100,100,0.8);
+  transform: scale(1.1);
+  color: #fff;
+  border: 2px solid black;
+}
+
+.ant-modal-footer div button:active {
+  background-color: rgba(253,100,100); 
+  transform: scale(0.99)
+}
+
+.ant-modal-footer div .ant-btn-primary {
+  background-color: rgb(17, 160, 249)
+}
+
+.ant-modal-footer div .ant-btn-primary:hover {
+  background-color: rgba(17, 160, 249,0.8);
+  transform: scale(1.1);
+  border: 2px solid black;
+}
+
 

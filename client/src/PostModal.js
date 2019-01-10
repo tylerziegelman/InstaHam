@@ -1,5 +1,5 @@
 import { Modal, Button } from 'antd';
-import { Input, TextArea } from 'antd';
+import { Input, Icon } from 'antd';
 import React from 'react'
 import './Header.css'
 
@@ -34,15 +34,16 @@ class PostModal extends React.Component {
         </Button>
        
         <Modal
-          title="Basic Modal"
+          title="Upload Your Meat"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-             
-            <Input size="small" placeholder="small size" />
-            <textarea className="post-textarea"></textarea>
-        </Modal>
+            <Button>
+                <Icon type="upload" /> Upload
+            </Button>
+            <textarea className="post-textarea" placeholder="Description of image"></textarea>
+            </Modal>
       </div>
     );
   }
