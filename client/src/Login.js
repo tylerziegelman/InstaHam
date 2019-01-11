@@ -35,27 +35,41 @@ export default class Login extends React.Component {
         password: ""
       }
     }
+    this.handleSubmit=this.handleSubmit.bind(this)
+    this.handleChange=this.handleChange.bind(this)
   }
   
+  
   //e.preventDefault() keeps page from refreshing after clicking submit
-  handleSubmit = e => {
-    axios.post("/create").then((user) => {
-      console.log(user)
-    })
-    e.preventDefault()
-
-
-    if (formValid(this.state)) {
-      console.log(`
-        --SUBMITTING--
-        Username: ${this.state.username}
-        Password: ${this.state.password}
-      `)
-    } else {
-      console.error(`Form invalid - display error mesage`)
+ handleSubmit(e) {
+   e.preventDefault()
+   console.log(this.state)
+   //{username, email, password})
+   axios.post("/create",
+    {
+      username: this.state.username,
+      email: "aaa@a.com",
+      password: this.state.password
     }
-  }
+   ).then((response) => {
+      
+     
+    
+    })
+   
 
+
+  //   if (formValid(this.state)) {
+  //     console.log(`
+  //       --SUBMITTING--
+  //       Username: ${this.state.username}
+  //       Password: ${this.state.password}
+  //     `)
+  //   } else {
+  //     console.error(`Form invalid - display error mesage`)
+  //   }
+  // }
+  }
 
 
   handleChange = e => {
@@ -127,7 +141,7 @@ export default class Login extends React.Component {
               )}
             </div>
             <div className="createAccount">
-              <button type="submit" onClick={this.handleSubmit}>Create Account</button>
+              <button onClick={this.handleSubmit}>Create Account</button>
               <small>Already have an Account?</small>
             </div>
           </form>
