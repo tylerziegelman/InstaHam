@@ -23,7 +23,7 @@ const formValid = ({ formErrors, ...rest }) => {
 }
 
 
-export default class Login extends React.Component {
+export default class CreateUser extends React.Component {
   constructor(props) {
     super(props)
 

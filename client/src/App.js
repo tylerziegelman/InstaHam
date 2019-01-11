@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Header.css'
-import Login from './Login'
+import CreateUser from './CreateUser'
 import Header from './Header'
 
 
@@ -17,7 +17,7 @@ class App extends Component {
        {/* <Header 
         toggleOpen={this.toggleOpen}/> */}
         {/* <PostModal /> */}
-        <Login />
+        <CreateUser />
       </div>
     );
   }
