@@ -36,10 +36,14 @@ export default class Login extends React.Component {
       }
     }
   }
+  
   //e.preventDefault() keeps page from refreshing after clicking submit
   handleSubmit = e => {
-    axios.post("/create")
+    axios.post("/create").then((user) => {
+      console.log(user)
+    })
     e.preventDefault()
+
 
     if (formValid(this.state)) {
       console.log(`
@@ -51,6 +55,8 @@ export default class Login extends React.Component {
       console.error(`Form invalid - display error mesage`)
     }
   }
+
+
 
   handleChange = e => {
     e.preventDefault()
@@ -121,7 +127,7 @@ export default class Login extends React.Component {
               )}
             </div>
             <div className="createAccount">
-              <button type="submit">Create Account</button>
+              <button type="submit" onClick={this.handleSubmit}>Create Account</button>
               <small>Already have an Account?</small>
             </div>
           </form>
