@@ -40,6 +40,7 @@ class PostModal extends React.Component {
           onCancel={this.handleCancel}
         >
             <Button>
+            {/* place to tie in post logic*/}
                 <Icon type="upload" /> Upload
             </Button>
             <textarea className="post-textarea" placeholder="Description of image"></textarea>
