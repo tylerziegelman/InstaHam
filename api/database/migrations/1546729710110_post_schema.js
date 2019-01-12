@@ -9,7 +9,7 @@ class PostSchema extends Schema {
       table.increments()
       table.string('image_url').notNullable()
       table.string('description', 254)
-      table.integer('user_id')
+      table.integer('user_id').unsigned().references('id').inTable('users')
       table.timestamps()
     })
   }

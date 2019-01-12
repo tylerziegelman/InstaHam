@@ -25,3 +25,4 @@ Route.post('/create', "UserController.createUser")
 Route.post('/login', "UserController.login")
 // routes for post
 Route.post('/post', 'PostController.createPost')
+Route.get('/home', 'PostController.getAllPosts')
