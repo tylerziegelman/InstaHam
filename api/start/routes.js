@@ -20,4 +20,8 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+// routes for user
 Route.post('/create', "UserController.createUser")
+Route.post('/login', "UserController.login")
+// routes for post
+Route.post('/post', 'PostController.createPost')
