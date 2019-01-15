@@ -9,9 +9,13 @@ class PostController {
 
     
 
-    async createPost({request,response}) {
+    async createPost({request,response,field, value}) {
         const {image_url, description, user_id } = request.post()
         const post = await Post.create({image_url, description, user_id })
+       
+           
+          
+        
         response.json({
             data: post
         })
