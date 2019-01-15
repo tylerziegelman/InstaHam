@@ -26,7 +26,7 @@ const formValid = ({ formErrors, ...rest }) => {
 }
 
 
-export default class CreateUser extends React.Component {
+export default class Register extends React.Component {
   constructor(props) {
     super(props)
 
@@ -109,65 +109,64 @@ export default class CreateUser extends React.Component {
   render() {
     const { formErrors } = this.state
     return (
-      <>
-        <Header />
-        <div className="wrapper">
+      <div className="wrapper">
 
-          <div className="form-wrapper">
-            <h1>Create Account</h1>
-            <form onSubmit={this.handleSubmit} noValidate>
+        <div className="form-wrapper">
+          <h1>Register</h1>
+          <form onSubmit={this.handleSubmit} noValidate>
+            <div className="email">
+              <label htmlFor="email"></label>
+              <input
+                className={formErrors.email.length > 0 ? "error" : null}
+                placeholder="Email"
+                type="email"
+                name="email"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.email.length > 0 && (
+                <span className="errorMessage">{formErrors.email}</span>
+              )}
+            </div>
 
-              <div className="username">
-                <label htmlFor="username"></label>
-                <input
-                  className={formErrors.username.length > 0 ? "error" : null}
-                  placeholder="Username"
-                  type="username"
-                  name="username"
-                  noValidate
-                  onChange={this.handleChange}
-                />
-                {formErrors.username.length > 0 && (
-                  <span className="errorMessage">{formErrors.username}</span>
-                )}
-              </div>
-              <div className="password">
-                <label htmlFor="password"></label>
-                <input
-                  className={formErrors.password.length > 0 ? "error" : null}
-                  placeholder="Password"
-                  type="password"
-                  name="password"
-                  noValidate
-                  onChange={this.handleChange}
-                />
-                {formErrors.password.length > 0 && (
-                  <span className="errorMessage">{formErrors.password}</span>
-                )}
-              </div>
-              <div className="email">
-                <label htmlFor="email"></label>
-                <input
-                  className={formErrors.email.length > 0 ? "error" : null}
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  noValidate
-                  onChange={this.handleChange}
-                />
-                {formErrors.email.length > 0 && (
-                  <span className="errorMessage">{formErrors.email}</span>
-                )}
-              </div>
-              <div className="createAccount">
-                <button onClick={this.handleSubmit}>Create Account</button>
-              </div>
-            </form>
+            <div className="username">
+              <label htmlFor="username"></label>
+              <input
+                className={formErrors.username.length > 0 ? "error" : null}
+                placeholder="Username"
+                type="username"
+                name="username"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.username.length > 0 && (
+                <span className="errorMessage">{formErrors.username}</span>
+              )}
+            </div>
 
-          </div>
+            <div className="password">
+              <label htmlFor="password"></label>
+              <input
+                className={formErrors.password.length > 0 ? "error" : null}
+                placeholder="Password"
+                type="password"
+                name="password"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.password.length > 0 && (
+                <span className="errorMessage">{formErrors.password}</span>
+              )}
+            </div>
+
+            <div className="createAccount">
+              <button onClick={this.handleSubmit}>Create Account</button>
+            </div>
+          </form>
 
         </div>
-      </>
+
+      </div>
     )
   }
 

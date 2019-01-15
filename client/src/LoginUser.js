@@ -89,8 +89,7 @@ export default class LoginUser extends React.Component {
     render() {
         const { formErrors } = this.state
         return (
-            <>
-                <Header />
+            <div>
                 <div className="wrapper">
                     <div className="form-wrapper">
                         <h1>Login</h1>
@@ -101,10 +100,9 @@ export default class LoginUser extends React.Component {
                                 <input
                                     className={formErrors.username.length > 0 ? "error" : null}
                                     placeholder="Username"
-                                    type="username"
+                                    type="text"
                                     name="username"
-                                    noValidate
-                                    onChange={this.handleChange}
+                                   
                                 />
                                 {formErrors.username.length > 0 && (
                                     <span className="errorMessage">{formErrors.username}</span>
@@ -118,8 +116,6 @@ export default class LoginUser extends React.Component {
                                     placeholder="Password"
                                     type="password"
                                     name="password"
-                                    noValidate
-                                    onChange={this.handleChange}
                                 />
                                 {formErrors.password.length > 0 && (
                                     <span className="errorMessage">{formErrors.password}</span>
@@ -137,8 +133,8 @@ export default class LoginUser extends React.Component {
                 </div>
 
 
-            </>
-
+                </div>
         )
     }
 }
+
