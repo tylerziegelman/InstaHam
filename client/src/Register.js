@@ -109,8 +109,9 @@ export default class Register extends React.Component {
   render() {
     const { formErrors } = this.state
     return (
+      
       <div className="wrapper">
-
+      
         <div className="form-wrapper">
           <h1>Register</h1>
           <form onSubmit={this.handleSubmit} noValidate>

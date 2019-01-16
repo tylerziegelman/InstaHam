@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Header.css'
-import CreateUser from './CreateUser'
+
 import { BrowserRouter, Route } from "react-router-dom";
 import HamCard from './HamCard'
 import axios from 'axios'
@@ -9,7 +9,7 @@ import Register from './Register'
 import LoginUser from './LoginUser'
 import RegisterLoginNavigation from './RegisterLoginNavigation'
 import Header from './Header'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import PostModal from './PostModal'
 
 class App extends Component {
@@ -37,27 +37,21 @@ render() {
     console.log(this.state.data)
     return (
       <div className="App">
-        <BrowserRouter>
-          <Route path='/create' component={CreateUser}/>
-          
-        </BrowserRouter>
-        <BrowserRouter>
-          <Route path='/home'
+         <BrowserRouter>
+          <div>
+          {/* <Route path='/create' component={CreateUser}/> */}
+           <Route path="/create" component={RegisterLoginNavigation}/>
+        
+        <Route path='/home'
              component={props=><HamCard 
                                   postData={this.state.data||[]}
                                   userData={this.state.user}  
                                 />}
              />
+          </div>
         </BrowserRouter>
      </div>
-      /* <Router> */
-        
-          /* <Header />
-          <Header toggleOpen={this.toggleOpen} /> */
-          /* <RegisterLoginNavigation />
-
-        </div>
-      </Router> */
+       
     );
   }
 }

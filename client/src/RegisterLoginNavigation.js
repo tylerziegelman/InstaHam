@@ -22,14 +22,23 @@ export default class RegisterLoginNavigator extends React.Component {
 
         return (
             <div>
+            <Header />
                 <div className="wrapper-navigation">
                     <div className="form-wrapper-navigation">
                         <div className="nav-controller">
-                            <Link to="/Register"><button className="nav-button">Register</button></Link>
-                            <Link to="/login"><button className="nav-button">Login</button></Link>
-                            <Route path="/login" component={LoginUser}></Route>
-                            <Route path="/register" component={Register}></Route>
-
+                            
+                            <Link to="/create/register"><button className="nav-button">Register</button></Link>
+                            <Route path="/create/register" 
+                                    component={props => {debugger;return<Register/>}}>
+                            </Route>
+                            
+                         
+                            <Link to="/create/login"><button className="nav-button">Login</button></Link>
+                            <Route path="/create/login" component={LoginUser}></Route>
+                            
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>
