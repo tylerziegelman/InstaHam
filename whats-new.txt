@@ -1,0 +1,19 @@
+-added use of JWT
+    -if user's email and pass is in database a token is granted
+    -if unsuccesful an error is generated
+
+-added routes to src/App.js in client
+    - localhost/home (display page)
+    -localhost/create (create account)
+
+-added ham display page
+    -created cards
+    -card is populated with data queried from the database
+    -used date casting in the post model to format date 
+     when created_at is served up on the card
+
+     For 1/15
+        -route create an login routes to frontend
+        -hook up login form
+        -check for token to go to homepage
+        

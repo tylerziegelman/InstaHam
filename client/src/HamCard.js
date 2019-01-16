@@ -19,13 +19,11 @@ export default class HamCard extends React.Component {
                                         <h4>
                                             {element.username}
                                         </h4>
-                                        <h5>{el.created_at}</h5>
+                                        <h5>
+                                            {el.created_at}
+                                        </h5>
                                     </div>
                                     } bordered={true} style={{ width: 400 }}>
-                            {/* <div className="card-header">
-                                <div className="head-username">{element.username}</div>
-                                <div className="head-date">{el.created_at}</div>
-                            </div> */}
                         <div className="ham-image">
                             <img src={el.image_url} alt="meaty post" />
                         </div>
@@ -34,11 +32,7 @@ export default class HamCard extends React.Component {
                             <div className="carrot-down"></div>
                             <p>{el.description} </p>
                         </div>
-                       
-                        
-                        
-                        
-                    </Card>
+                </Card>
                 }
             })
         });
