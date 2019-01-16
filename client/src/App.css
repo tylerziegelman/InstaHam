@@ -152,6 +152,7 @@ input.error {
    .nav-controller {
     padding-top: 150px;
     background-color: #258ea6;
+    min-height: 100%;
    
   } 
   .nav-button {
