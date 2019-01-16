@@ -8,7 +8,11 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
+<<<<<<< HEAD
     "react-scripts": "2.1.2",
+=======
+    "react-scripts": "^2.1.3",
+>>>>>>> 44f296feb91698ec1336467e52b909fe3d1acf5b
     "react-toolbox": "^2.0.0-beta.6",
     "react-toolbox-themr": "^1.0.2"
   },

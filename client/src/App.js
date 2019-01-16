@@ -5,6 +5,12 @@ import CreateUser from './CreateUser'
 import { BrowserRouter, Route } from "react-router-dom";
 import HamCard from './HamCard'
 import axios from 'axios'
+import Register from './Register'
+import LoginUser from './LoginUser'
+import RegisterLoginNavigation from './RegisterLoginNavigation'
+import Header from './Header'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import PostModal from './PostModal'
 
 class App extends Component {
 
@@ -27,8 +33,7 @@ class App extends Component {
 
   
 }
-
-  render() {
+render() {
     console.log(this.state.data)
     return (
       <div className="App">
@@ -44,7 +49,15 @@ class App extends Component {
                                 />}
              />
         </BrowserRouter>
-      </div>
+     </div>
+      /* <Router> */
+        
+          /* <Header />
+          <Header toggleOpen={this.toggleOpen} /> */
+          /* <RegisterLoginNavigation />
+
+        </div>
+      </Router> */
     );
   }
 }
