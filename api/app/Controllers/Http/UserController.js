@@ -22,12 +22,13 @@ class UserController {
           request.input('email'),
           request.input('password')
         )
-
+          console.log("login works")
         return response.json({
           status: 'success!',
           data: token
         })
       }catch(error){
+        console.log("login failed")
         response.status(400).json({
           status: 'error',
           message: 'Invalid Credentials'
