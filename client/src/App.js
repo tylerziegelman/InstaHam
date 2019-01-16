@@ -40,7 +40,11 @@ render() {
          <BrowserRouter>
           <div>
           {/* <Route path='/create' component={CreateUser}/> */}
-           <Route path="/create" component={RegisterLoginNavigation}/>
+           <Route path="/create" component={props=> <RegisterLoginNavigation 
+                                                        userData={this.state.user}
+
+
+                                                    />}/>
         
         <Route path='/home'
              component={props=><HamCard 

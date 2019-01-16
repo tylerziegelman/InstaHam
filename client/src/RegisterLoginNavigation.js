@@ -19,8 +19,9 @@ export default class RegisterLoginNavigator extends React.Component {
 
 
     render() {
-
+        console.log(this.props.userData)
         return (
+            
             <div>
             <Header />
                 <div className="wrapper-navigation">
@@ -29,12 +30,16 @@ export default class RegisterLoginNavigator extends React.Component {
                             
                             <Link to="/create/register"><button className="nav-button">Register</button></Link>
                             <Route path="/create/register" 
-                                    component={props => {debugger;return<Register/>}}>
+                                    component={props => {return<Register userDataReg={this.props.userData}/>}}>
                             </Route>
                             
                          
                             <Link to="/create/login"><button className="nav-button">Login</button></Link>
-                            <Route path="/create/login" component={LoginUser}></Route>
+                            <Route path="/create/login" 
+                            
+                            component={props => {return<LoginUser userDataLogin={this.props.userData}/>}}>
+                            
+                            </Route>
                             
                             
                             

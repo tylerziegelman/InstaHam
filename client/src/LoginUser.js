@@ -27,7 +27,7 @@ export default class LoginUser extends React.Component {
             username: null,
             password: null,
             formErrors: {
-                username: "",
+                email: "",
                 password: "",
             }
         }
@@ -38,13 +38,16 @@ export default class LoginUser extends React.Component {
         e.preventDefault()
         console.log(this.state)
         //{username, password})
-        axios.post("/create",
+        debugger
+        
+        axios.post("/login",
+       
             {
-                username: this.state.username,
+                email: this.state.email,
                 password: this.state.password
-            }
+            } 
         ).then((response) => {
-
+           
         })
 
         //   if (formValid(this.state)) {
@@ -64,7 +67,7 @@ export default class LoginUser extends React.Component {
         e.preventDefault()
         const { name, value } = e.target
         let formErrors = this.state.formErrors
-
+        console.log(this.state)
         switch (name) {
             case "username":
                 formErrors.username =
@@ -80,6 +83,7 @@ export default class LoginUser extends React.Component {
                 break;
 
         }
+        
         this.setState({ formErrors, [name]: value }, () => console.log(this.state))
 
     }
@@ -88,6 +92,7 @@ export default class LoginUser extends React.Component {
 
     render() {
         const { formErrors } = this.state
+        console.log(this.props.userDataLogin)
         return (
             <div>
                 
@@ -97,16 +102,16 @@ export default class LoginUser extends React.Component {
                         <form onSubmit={this.handleSubmit}>
 
                             <div className="username">
-                                <label htmlFor="username"></label>
+                                <label htmlFor="email"></label>
                                 <input
-                                    className={formErrors.username.length > 0 ? "error" : null}
-                                    placeholder="Username"
+                                    className={formErrors.email.length > 0 ? "error" : null}
+                                    placeholder="email"
                                     type="text"
-                                    name="username"
-                                   
+                                    name="email"
+                                    onChange={this.handleChange}
                                 />
-                                {formErrors.username.length > 0 && (
-                                    <span className="errorMessage">{formErrors.username}</span>
+                                {formErrors.email.length > 0 && (
+                                    <span className="errorMessage">{formErrors.email}</span>
                                 )}
 
                             </div>
@@ -117,6 +122,7 @@ export default class LoginUser extends React.Component {
                                     placeholder="Password"
                                     type="password"
                                     name="password"
+                                    onChange={this.handleChange}
                                 />
                                 {formErrors.password.length > 0 && (
                                     <span className="errorMessage">{formErrors.password}</span>
