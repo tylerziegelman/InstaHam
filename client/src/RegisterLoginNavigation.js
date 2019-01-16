@@ -20,7 +20,6 @@ export default class RegisterLoginNavigator extends React.Component {
 
     render() {
 
-
         return (
             <div>
                 <div className="wrapper-navigation">
@@ -32,7 +31,6 @@ export default class RegisterLoginNavigator extends React.Component {
                             <Route path="/register" component={Register}></Route>
 
                         </div>
-
                     </div>
                 </div>
             </div>
