@@ -59,6 +59,7 @@ export class Register extends React.Component {
         
       }
     ).then((response) => {
+      
       this.props.history.push('/home')
     })
 

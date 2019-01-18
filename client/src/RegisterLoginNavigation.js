@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios"
-import Header from './Header'
+import HeaderNoBtns from './HeaderNoBtns'
 import Register from './Register'
 import LoginUser from './LoginUser'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
@@ -23,23 +23,18 @@ export default class RegisterLoginNavigator extends React.Component {
         return (
             
             <div>
-            <Header />
-                <div className="wrapper-navigation">
+            <HeaderNoBtns />
+                <div className="wrapper">
                     <div className="form-wrapper-navigation">
                         <div className="nav-controller">
                             
-                            <Link to="/create/register"><button className="nav-button">Register</button></Link>
-                            <Route path="/create/register" 
-                                    component={props => {return<Register userDataReg={this.props.userData}/>}}>
-                            </Route>
+                            <Link to="/register"><button className="nav-button-register nav-button">Register</button></Link>
+                            <Link to="/login"><button className="nav-button-login nav-button">Login</button></Link>
+                           
                             
-                         
-                            <Link to="/create/login"><button className="nav-button">Login</button></Link>
-                            <Route path="/create/login" 
                             
-                            component={props => {return<LoginUser userDataLogin={this.props.userData}/>}}>
                             
-                            </Route>
+                  
                             
                             
                             
