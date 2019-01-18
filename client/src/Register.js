@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from "axios"
 import Header from './Header'
-
+import { BrowserRouter, Route } from "react-router-dom";
+import HamCard from './HamCard'
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -54,9 +55,12 @@ export default class Register extends React.Component {
       {
         username: this.state.username,
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        
       }
     ).then((response) => {
+      console.log(response)
+     
     })
 
     //   if (formValid(this.state)) {

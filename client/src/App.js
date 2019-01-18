@@ -27,14 +27,16 @@ class App extends Component {
     
     this.setState({
       data: obj.data.post_data,
-      user: obj.data.user_data
+      user: obj.data.user_data,
+      
     })
+   
   })
 
   
 }
 render() {
-    console.log(this.state.data)
+    
     return (
       <div className="App">
          <BrowserRouter>
