@@ -16,6 +16,9 @@ const globalMiddleware = [
   'Adonis/Middleware/BodyParser'
 ]
 
+{
+    auth: 'Adonis/Middleware/Auth'
+   }
 /*
 |--------------------------------------------------------------------------
 | Named Middleware

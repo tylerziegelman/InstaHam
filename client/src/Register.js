@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from "axios"
 import Header from './Header'
-import { BrowserRouter, Route } from "react-router-dom";
-import HamCard from './HamCard'
+import { withRouter } from "react-router";
+
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -27,7 +27,7 @@ const formValid = ({ formErrors, ...rest }) => {
 }
 
 
-export default class Register extends React.Component {
+export class Register extends React.Component {
   constructor(props) {
     super(props)
 
@@ -59,8 +59,7 @@ export default class Register extends React.Component {
         
       }
     ).then((response) => {
-      console.log(response)
-     
+      this.props.history.push('/home')
     })
 
     //   if (formValid(this.state)) {
@@ -179,4 +178,4 @@ export default class Register extends React.Component {
 
 }
 
-
+export default withRouter(Register);

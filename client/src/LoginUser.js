@@ -1,9 +1,7 @@
 import React from 'react';
 import axios from "axios"
 import Header from './Header'
-import HamCard from './HamCard'
-
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom"
+import { withRouter } from "react-router";
 
 
 const formValid = ({ formErrors, ...rest }) => {
@@ -23,7 +21,7 @@ const formValid = ({ formErrors, ...rest }) => {
 }
 
 
-export default class LoginUser extends React.Component {
+export class LoginUser extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -45,7 +43,6 @@ export default class LoginUser extends React.Component {
         
         //{username, password})
         
-        
         axios.post("/login",
        
             {
@@ -54,24 +51,12 @@ export default class LoginUser extends React.Component {
                
             } 
         ).then((response) => {
-            console.log(response)
+           this.props.history.push('/home')
+           localStorage.setItem("instaham-jwt", `Bearer ${response.data.data.token}`);
+        
         })
 
-       
 
-        //   if (formValid(this.state)) {
-        //     console.log(`
-        //       --SUBMITTING--
-        //       Username: ${this.state.username}
-        //       Password: ${this.state.password}
-        //     `)
-        //   } else {
-        //     console.error(`Form invalid - display error mesage`)
-        //   }
-        // }
-
-      
-      
     }
 
 
@@ -104,7 +89,7 @@ export default class LoginUser extends React.Component {
 
     render() {
         const { formErrors } = this.state
-        
+        console.log(this.props)
         return (
             <div>
                 
@@ -157,3 +142,4 @@ export default class LoginUser extends React.Component {
     }
 }
 
+export default withRouter(LoginUser);
