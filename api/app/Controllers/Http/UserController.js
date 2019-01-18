@@ -18,10 +18,13 @@ class UserController {
 
     async login({request,auth,response}) {
       try {
-        const token = await auth.attempt(
+        const token = await auth.withRefreshToken().attempt(
           request.input('email'),
           request.input('password')
+          
         )
+        // return response.redirect('/home')
+        console.log(token)
           console.log("login works")
         return response.json({
           status: 'success!',
@@ -34,6 +37,7 @@ class UserController {
           message: 'Invalid Credentials'
         })
       }
+     
     }
 
 }
