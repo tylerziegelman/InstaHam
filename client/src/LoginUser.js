@@ -25,11 +25,14 @@ export class LoginUser extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: null,
+            email: null,
             password: null,
+            logged_in: false,
+            token: null,
             formErrors: {
                 email: "",
                 password: "",
+                logged_in: false
             }
         }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -37,14 +40,15 @@ export class LoginUser extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault()
-        console.log(this.state)
+        
         //{username, password})
         
         axios.post("/login",
        
             {
                 email: this.state.email,
-                password: this.state.password
+                password: this.state.password,
+               
             } 
         ).then((response) => {
            this.props.history.push('/home')
@@ -60,10 +64,10 @@ export class LoginUser extends React.Component {
         e.preventDefault()
         const { name, value } = e.target
         let formErrors = this.state.formErrors
-        console.log(this.state)
+        console.log(this.state.data)
         switch (name) {
-            case "username":
-                formErrors.username =
+            case "email":
+                formErrors.email =
                     value.length < 6
                         ? 'minimum 6 characters required' : ""
                 break;
@@ -77,8 +81,8 @@ export class LoginUser extends React.Component {
 
         }
         
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state))
-
+        this.setState({ formErrors, [name]: value })
+      
     }
 
 
