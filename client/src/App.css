@@ -36,7 +36,7 @@
   width: 400px;
   border-radius: 10px;
   border: 2px solid black;
-  height: 50%;
+  height: 200px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -70,25 +70,32 @@
 .nav-button-login:before, .nav-button-register:before{
   content: "";
   position: absolute;
-  width: 60%;
+  
   height: 4px;
   border-top: 2px solid black;
-  bottom: 15px;
-  left: 30px;
+ 
   background-color: rgba(255,255,255,0.6);
   visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
+  /* -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s; */
+}
+
+.nav-button-register:before {
+  bottom: 15px;
+  left: 30px;
+  width: 60%;
 }
 
 .nav-button-login:before {
   width: 40%;
   left: 45px;
+  bottom: 15px;
 }
 
 .nav-button-login:hover:before, .nav-button-register:hover:before{
+ 
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
