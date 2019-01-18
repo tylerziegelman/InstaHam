@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios"
-import Header from './Header'
+import HeaderNoBtns from './HeaderNoBtns'
 import { withRouter } from "react-router";
 
 const emailRegex = RegExp(
@@ -115,7 +115,7 @@ export class Register extends React.Component {
     return (
       
       <div className="wrapper">
-      
+        <HeaderNoBtns />
         <div className="form-wrapper">
           <h1>Register</h1>
           <form onSubmit={this.handleSubmit} noValidate>

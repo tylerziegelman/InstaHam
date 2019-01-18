@@ -4,10 +4,10 @@ import './Header.css'
 export default class HeaderNoBtns extends React.Component  {
     render(){
         return(
-            <header className="header">
-                <div className="ham-logo"></div>
+         
+                <div className="logo-no-btns"></div>
                 
-            </header>
+            
         )
     }
 }
