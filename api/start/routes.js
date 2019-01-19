@@ -27,3 +27,4 @@ Route.post('/login', "UserController.login")
 Route.get('/home', 'PostController.getAllPosts')
 Route.post('/post', 'PostController.createPost').middleware(['auth:jwt'])
 
+Route.post('/uploadImage', 'PostController.uploadImage')
