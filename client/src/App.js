@@ -47,7 +47,8 @@ render() {
 
 
                                                     />}/>
-        
+        <Route path="/register" render={(props)=> <Register/>}/>
+        <Route path="/login" render={(props)=> <LoginUser/>}/>
         <Route path='/home'
              component={props=><HamCard 
                                   postData={this.state.data||[]}

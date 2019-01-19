@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios"
-import Header from './Header'
+import HeaderNoBtns from './HeaderNoBtns'
 import { withRouter } from "react-router";
 
 
@@ -91,9 +91,12 @@ export class LoginUser extends React.Component {
         const { formErrors } = this.state
         console.log(this.props)
         return (
-            <div>
-                
+            
+            
+            
+               
                 <div className="wrapper">
+                <HeaderNoBtns />
                     <div className="form-wrapper">
                         <h1>Login</h1>
                         <form onSubmit={this.handleSubmit}>
@@ -137,7 +140,8 @@ export class LoginUser extends React.Component {
                 </div>
 
 
-                </div>
+                
+            
         )
     }
 }
