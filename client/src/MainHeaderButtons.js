@@ -15,9 +15,10 @@ constructor() {
         this.props.history.push('/create')
     }
     render(){
+        console.log(this.props.userData)
         return(
             <div className="button-container">
-                <PostModal />
+                <PostModal userData={this.props.userData}/>
                 {/* <Button className="post-button" type="default" onClick={this.showModal}>Post</Button> */}
                 <Button className="signout-button" type="default" onClick={this.handleSignOut}>Sign-out</Button>
             </div>

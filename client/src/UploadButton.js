@@ -5,7 +5,7 @@ import axios from 'axios'
 class UploadButton extends React.Component {
     constructor(){
         super()
-        this.handleChange = this.handleChange.bind(this)
+        //this.handleChange = this.handleChange.bind(this)
     }
     state = {
         previewVisible: false,
@@ -27,25 +27,7 @@ class UploadButton extends React.Component {
         });
     }
 
-    handleChange = ({ file, event }) => {
-        console.log(event)
-        console.log(file)
-
-        console.log(file)
-        const formData = new FormData();
-        formData.append('ham_image', file.originFileObj)
-        console.log(formData)
-
-        //this.setState({ fileList })
-        axios.post('/uploadImage', formData).then((response) => {
-            this.setState({
-                url: response.data
-            })
-            console.log(this.state.url)
-            
-        })
-        
-    }
+    
 
     render() {
         const { previewVisible, previewImage, fileList } = this.state;
@@ -63,7 +45,7 @@ class UploadButton extends React.Component {
                     listType="picture-card"
                     fileList={fileList}
                     onPreview={this.handlePreview}
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                 >
                     {fileList.length >= 3 ? null : uploadButton}
                 </Upload>

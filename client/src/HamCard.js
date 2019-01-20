@@ -42,7 +42,7 @@ export default class HamCard extends React.Component {
         console.log(this.props.postData)
         return (
             <>
-                <Header />
+                <Header userData={this.props.userData}/>
                 <div className="ham-card">
                     {this.displayData()}
                 </div>
