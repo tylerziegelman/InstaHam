@@ -29,3 +29,5 @@ Route.post('/post', 'PostController.createPost').middleware(['auth:jwt'])
 
 Route.post('/uploadImage', 'PostController.uploadImage')
 
+ //routes for like
+Route.post('/like', 'LikeController.createLike')

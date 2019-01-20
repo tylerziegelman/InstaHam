@@ -36,3 +36,10 @@ Factory.blueprint('App/Models/Post', (data,faker) => {
         user_id: data.user_id
     }
   })
+
+  Factory.blueprint('App/Models/Like', (data,faker) => {
+    return {
+        post_id: data.post_id,
+        user_id: data.user_id
+    }
+  })
