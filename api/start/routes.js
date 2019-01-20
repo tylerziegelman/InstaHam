@@ -23,8 +23,12 @@ Route.get('/', () => {
 // routes for user
 Route.post('/create', "UserController.createUser")
 Route.post('/login', "UserController.login")
+Route.post('/logout', "UserController.logOut")
 // routes for post
 Route.get('/home', 'PostController.getAllPosts')
 Route.post('/post', 'PostController.createPost').middleware(['auth:jwt'])
 
 Route.post('/uploadImage', 'PostController.uploadImage')
+
+ //routes for like
+Route.post('/like', 'LikeController.createLike')

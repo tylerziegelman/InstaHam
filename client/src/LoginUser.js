@@ -64,7 +64,7 @@ export class LoginUser extends React.Component {
         e.preventDefault()
         const { name, value } = e.target
         let formErrors = this.state.formErrors
-        console.log(this.state.data)
+        
         switch (name) {
             case "email":
                 formErrors.email =
@@ -89,7 +89,6 @@ export class LoginUser extends React.Component {
 
     render() {
         const { formErrors } = this.state
-        console.log(this.props)
         return (
             
             

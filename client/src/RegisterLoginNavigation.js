@@ -19,7 +19,7 @@ export default class RegisterLoginNavigator extends React.Component {
 
 
     render() {
-        console.log(this.props.userData)
+        
         return (
             
             <div>

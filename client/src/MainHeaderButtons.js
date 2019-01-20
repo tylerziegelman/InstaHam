@@ -3,6 +3,7 @@ import './Header.css'
 import Button from 'antd/lib/button';
 import PostModal from './PostModal'
 import { withRouter } from "react-router";
+import axios from 'axios'
 
 export class MainHeaderButtons extends React.Component  {
    
@@ -12,12 +13,17 @@ constructor() {
 }
 
     handleSignOut() {
-        this.props.history.push('/create')
+        axios.post('/logout', {
+
+        }).then((response) => {
+            this.props.history.push('/create')
+            localStorage.clear()
+        })
     }
     render(){
         return(
             <div className="button-container">
-                <PostModal />
+                <PostModal userData={this.props.userData}/>
                 {/* <Button className="post-button" type="default" onClick={this.showModal}>Post</Button> */}
                 <Button className="signout-button" type="default" onClick={this.handleSignOut}>Sign-out</Button>
             </div>

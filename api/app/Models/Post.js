@@ -6,7 +6,7 @@ const Model = use('Model')
 class Post extends Model {
     static get dates () {
         const el = super.dates.concat(['created_at', 'updated_at'])
-        console.log(el)
+       
         return el
         
       }
@@ -19,7 +19,10 @@ class Post extends Model {
         return super.formatDates(field, value)
       }
     user(){
-        return this.belongsTo('App/Models/Post')
+        return this.belongsTo('App/Models/User')
+    }
+    likes(){
+      return this.hasMany('App/Models/Like')
     }
 }
 
