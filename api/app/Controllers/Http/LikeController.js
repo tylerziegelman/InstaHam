@@ -7,8 +7,8 @@ class LikeController {
 
     async createLike ({request, response,auth}) {
         const user = await auth.getUser()
-        const {post_id} = request.post()
-        const like = await Like.create({user_id:user.id,post_id})
+        const {post_id,type} = request.post()
+        const like = await Like.create({user_id:user.id,post_id,type:type})
         response.json({
             message:`Like was created`,
             data: like
