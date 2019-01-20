@@ -39,7 +39,9 @@ class UserController {
       }
      
     }
-
+    async logOut({auth}){
+      await auth.authenticator('jwt').revokeTokens()
+    }
 }
 
 
