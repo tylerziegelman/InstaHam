@@ -15,6 +15,20 @@ export default class HamCard extends React.Component {
     handleLike (e,postId)  {
         e.preventDefault()
         axios.post('/like', {
+            post_id: postId
+        },{
+            headers: {
+              Authorization: localStorage.getItem('instaham-jwt')
+            }
+
+
+    })
+    }
+
+
+    handleDisLike (e,postId)  {
+        e.preventDefault()
+        axios.post('/like', {
         
             post_id: postId
             
@@ -57,7 +71,7 @@ export default class HamCard extends React.Component {
                         </div>
                         <div className="card-icons-wrapper">
                             <a className="fork-up" onClick={(e)=>this.handleLike(e,el.id)}></a>
-                            <a className="carrot-down"></a>
+                            <a className="carrot-down" onClick={(e)=>this.handleDisLike(e,el.id)}></a>
                             <p>{el.description} </p>
                         </div>
                 </Card>

@@ -64,7 +64,6 @@ class PostModal extends React.Component {
 }
 
 handleSubmitPost = () => {
-  
   axios.post('/post', {
     user_id: this.props.userData.user_id,
     image_url: this.state.image_url,
@@ -74,9 +73,6 @@ handleSubmitPost = () => {
       Authorization: localStorage.getItem('instaham-jwt')
     }
   })
-  
-  // this.handleInputChange(e,{value})
-  
  
   this.setState({
     visible: false,
