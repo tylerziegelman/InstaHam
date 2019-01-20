@@ -2,12 +2,40 @@ import React from 'react'
 import { Card } from 'antd'
 import './HamCard.css'
 import Header from './Header'
+import axios from 'axios'
 export default class HamCard extends React.Component {
+
+
 
     constructor() {
         super()
         this.displayData = this.displayData.bind(this)
     }
+
+    handleLike (e,postId)  {
+        e.preventDefault()
+        axios.post('/like', {
+        
+            post_id: postId
+            
+        },{
+            headers: {
+              Authorization: localStorage.getItem('instaham-jwt')
+            }
+
+
+    })
+    }
+    // axios.post('/post', {
+    //     user_id: this.props.userData.user_id,
+    //     image_url: this.state.image_url,
+    //     description: this.state.description
+    //   },{
+    //     headers: {
+    //       Authorization: localStorage.getItem('instaham-jwt')
+    //     }
+    //   })
+      
 
 
     displayData(props) {
@@ -15,7 +43,7 @@ export default class HamCard extends React.Component {
             return this.props.postData.map((el) => {
                 if (element.id === el.user_id) {
                     
-                return <Card title={<div className="header-wrap">
+                return <Card title={<div className="header-wrap" key={el.id}>
                                         <h4>
                                             {element.username}
                                         </h4>
@@ -28,8 +56,8 @@ export default class HamCard extends React.Component {
                             <img src={el.image_url} alt="meaty post" />
                         </div>
                         <div className="card-icons-wrapper">
-                            <div className="fork-up"></div>
-                            <div className="carrot-down"></div>
+                            <a className="fork-up" onClick={(e)=>this.handleLike(e,el.id)}></a>
+                            <a className="carrot-down"></a>
                             <p>{el.description} </p>
                         </div>
                 </Card>
@@ -39,7 +67,7 @@ export default class HamCard extends React.Component {
     }
 
     render() {
-        console.log(this.props.postData)
+       
         return (
             <>
                 <Header userData={this.props.userData}/>

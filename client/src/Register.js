@@ -49,7 +49,7 @@ export class Register extends React.Component {
   //e.preventDefault() keeps page from refreshing after clicking submit
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state)
+    
     //{username, email, password})
     axios.post("/create",
       {
@@ -63,17 +63,6 @@ export class Register extends React.Component {
       this.props.history.push('/home')
     })
 
-    //   if (formValid(this.state)) {
-    //     console.log(`
-    //       --SUBMITTING--
-    //       Username: ${this.state.username}
-    //       Password: ${this.state.password}
-    //       Email: ${this.state.email}
-    //     `)
-    //   } else {
-    //     console.error(`Form invalid - display error mesage`)
-    //   }
-    // }
   }
 
   handleChange = e => {

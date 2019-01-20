@@ -24,7 +24,7 @@ class PostModal extends React.Component {
   }
 
   handleOk = (e) => {
-    console.log(e);
+   
 
     this.setState({
       visible: false,
@@ -32,7 +32,7 @@ class PostModal extends React.Component {
   }
 
   handleCancel = (e) => {
-    console.log(e);
+   
     this.setState({
       visible: false,
     });
@@ -57,14 +57,14 @@ class PostModal extends React.Component {
         this.setState({
             image_url: response.data
         })
-        console.log(this.state.image_url)
+        
         
     })
     
 }
 
 handleSubmitPost = () => {
-  console.log(this.props.userData)
+  
   axios.post('/post', {
     user_id: this.props.userData.user_id,
     image_url: this.state.image_url,
@@ -74,9 +74,9 @@ handleSubmitPost = () => {
       Authorization: localStorage.getItem('instaham-jwt')
     }
   })
-  console.log(this.state.image_url)
+  
   // this.handleInputChange(e,{value})
-  console.log(this.state.description)
+  
  
   this.setState({
     visible: false,

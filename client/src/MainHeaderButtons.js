@@ -15,7 +15,6 @@ constructor() {
         this.props.history.push('/create')
     }
     render(){
-        console.log(this.props.userData)
         return(
             <div className="button-container">
                 <PostModal userData={this.props.userData}/>
