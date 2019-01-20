@@ -17,8 +17,8 @@ class App extends Component {
  constructor(){
    super()
    this.state={
-    data:[],
-    user:[]
+    posts:[]
+   
    }
  }
 
@@ -26,8 +26,8 @@ class App extends Component {
   axios.get("/home").then((obj) => {
     
     this.setState({
-      data: obj.data.post_data,
-      user: obj.data.user_data,
+      posts: obj.data.post_data
+      
       
     })
    
@@ -43,7 +43,7 @@ render() {
           <div>
           {/* <Route path='/create' component={CreateUser}/> */}
            <Route path="/create" component={props=> <RegisterLoginNavigation 
-                                                        userData={this.state.user}
+                                                       
 
 
                                                     />}/>
@@ -51,8 +51,8 @@ render() {
         <Route path="/login" render={(props)=> <LoginUser/>}/>
         <Route path='/home'
              component={props=><HamCard 
-                                  postData={this.state.data||[]}
-                                  userData={this.state.user}  
+                                  postData={this.state.posts||[]}
+                                   
                                 />}
              />
           </div>

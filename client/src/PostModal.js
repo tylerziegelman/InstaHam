@@ -66,7 +66,7 @@ class PostModal extends React.Component {
 handleSubmitPost = () => {
   
   axios.post('/post', {
-    user_id: this.props.userData.user_id,
+    
     image_url: this.state.image_url,
     description: this.state.description
   },{
