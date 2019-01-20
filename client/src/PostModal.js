@@ -7,6 +7,14 @@ import axios from 'axios'
 import { defaultCipherList } from 'constants';
 
 class PostModal extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      description: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
+  }
   state = { visible: false }
 
   showModal = () => {
@@ -30,20 +38,52 @@ class PostModal extends React.Component {
     });
   }
 
-  handleSubmitPost = () => {
-    axios.post('/post', {
-      url: "",
-      description:""
-    },{
-      headers: {
-        Authorization: localStorage.get('instaham-jwt')
-      }
+  handleInputChange(e){
+    
+    
+    this.setState({ description: e.target.value });
+
+    
+  }
+
+  handleChange = ({ file, event }) => {
+   
+    const formData = new FormData();
+    formData.append('ham_image', file.originFileObj)
+  
+
+    //this.setState({ fileList })
+    axios.post('/uploadImage', formData).then((response) => {
+        this.setState({
+            image_url: response.data
+        })
+        console.log(this.state.image_url)
+        
     })
     
-    this.setState({
-      visible: false,
-    });
-  }
+}
+
+handleSubmitPost = () => {
+  console.log(this.props.userData)
+  axios.post('/post', {
+    user_id: this.props.userData.user_id,
+    image_url: this.state.image_url,
+    description: this.state.description
+  },{
+    headers: {
+      Authorization: localStorage.getItem('instaham-jwt')
+    }
+  })
+  console.log(this.state.image_url)
+  // this.handleInputChange(e,{value})
+  console.log(this.state.description)
+ 
+  this.setState({
+    visible: false,
+  });
+}
+
+
 
   footer = () => {
     return <>
@@ -76,9 +116,9 @@ render() {
           {/* <Icon type="upload" /> Upload
             </Button> */} 
 
-<UploadButton/>
+      <UploadButton handleChange={this.handleChange} />
 
-        <textarea className="post-textarea" placeholder="Description of image"></textarea>
+        <textarea className="post-textarea" placeholder="Description of image" onChange={this.handleInputChange}></textarea>
       </Modal>
     </div>
   );
