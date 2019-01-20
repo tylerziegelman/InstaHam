@@ -8,7 +8,9 @@ class LikeController {
     async createLike ({request, response,auth}) {
         const user = await auth.getUser()
         const {post_id,type} = request.post()
-        const likeChecker = await Database.from('likes').where('user_id', user.id).where('post_id', post_id)
+        const likeChecker = await Database.from('likes')
+                        .where('user_id', user.id)
+                        .where('post_id', post_id)
         
         
          if(likeChecker.length){

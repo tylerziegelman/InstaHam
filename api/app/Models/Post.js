@@ -21,7 +21,7 @@ class Post extends Model {
     user(){
         return this.belongsTo('App/Models/User')
     }
-    like(){
+    likes(){
       return this.hasMany('App/Models/Like')
     }
 }
