@@ -19,7 +19,7 @@ class Post extends Model {
         return super.formatDates(field, value)
       }
     user(){
-        return this.belongsTo('App/Models/Post')
+        return this.belongsTo('App/Models/User')
     }
     like(){
       return this.hasMany('App/Models/Like')

@@ -43,14 +43,20 @@ class PostController {
     }
 
     async getAllPosts({request,response}){
-        const post = await Post.all();
-        const user = await User.all()
+        const post = await Post.query().with('user').fetch();
+        // const user = await User.all()
      
         response.json({
              post_data: post,
-             user_data: user
+            //  user_data: user
 
         })
+
+        // const users = await User
+        // .query()
+        // .with('posts')
+        // .fetch()
+
     }
 }
 
