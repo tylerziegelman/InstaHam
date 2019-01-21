@@ -1,4 +1,5 @@
 'use strict'
+const url = require('url-parse')
 
 /** @type {import('@adonisjs/framework/src/Env')} */
 const Env = use('Env')
