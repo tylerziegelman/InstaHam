@@ -24,13 +24,22 @@ class App extends Component {
 
  componentDidMount() {
   axios.get("/home").then((obj) => {
-    
+  
     this.setState({
       posts: obj.data.post_data
       
       
     })
-   
+   return(obj.data.post_data.map((post)=>{
+    let counter = 0;
+    return(post.likes.forEach((like)=>{
+      if (like.type === 0) {
+        counter++
+        console.log(`post ${like.post_id} has ${counter} dislikes`)
+      }else if(like.type===1) {console.log(`post ${like.post_id} has ${counter} likes`)}
+    }))
+    
+   }))
   })
 
   

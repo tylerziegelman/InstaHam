@@ -47,7 +47,7 @@ class PostController {
         const post = await Post.query().with('user')
                             .withCount('likes').with('likes').fetch();
         // const user = await User.all()
-        
+       
         response.json({
              post_data: post,
             //  user_data: user
