@@ -3,7 +3,8 @@ const Post=use('App/Models/Post')
 const User = use('App/Models/User')
 const aws = require('aws-sdk')
 const Drive = use('Drive')
-
+const Like = use('App/Models/Like')
+const Database = use('Database')
 const s3 = new aws.S3();
 const S3_BUCKET = process.env.bucket
 
@@ -43,14 +44,21 @@ class PostController {
     }
 
     async getAllPosts({request,response}){
-        const post = await Post.all();
-        const user = await User.all()
-     
+        const post = await Post.query().with('user')
+                            .withCount('likes').with('likes').fetch();
+        // const user = await User.all()
+        
         response.json({
              post_data: post,
-             user_data: user
+            //  user_data: user
 
         })
+
+        // const users = await User
+        // .query()
+        // .with('posts')
+        // .fetch()
+
     }
 }
 

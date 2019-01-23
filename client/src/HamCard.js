@@ -17,65 +17,57 @@ export default class HamCard extends React.Component {
         this.displayData = this.displayData.bind(this)
     }
 
-    handleLike (e,postId)  {
+    handleLike(e, postId,type) {
         e.preventDefault()
         axios.post(`${host}/like`, {
         
             post_id: postId
-            
-        },{
-            headers: {
-              Authorization: localStorage.getItem('instaham-jwt')
-            }
+
+        }, {
+                headers: {
+                    Authorization: localStorage.getItem('instaham-jwt')
+                }
 
 
-    })
+            })
     }
-    // axios.post('/post', {
-    //     user_id: this.props.userData.user_id,
-    //     image_url: this.state.image_url,
-    //     description: this.state.description
-    //   },{
-    //     headers: {
-    //       Authorization: localStorage.getItem('instaham-jwt')
-    //     }
-    //   })
-      
+
+
 
 
     displayData(props) {
-        return this.props.userData.map((element) => {
-            return this.props.postData.map((el) => {
-                if (element.id === el.user_id) {
-                    
-                return <Card title={<div className="header-wrap" key={el.id}>
-                                        <h4>
-                                            {element.username}
-                                        </h4>
-                                        <h5>
-                                            {el.created_at}
-                                        </h5>
-                                    </div>
-                                    } bordered={true} style={{ width: 400 }}>
+       
+            return this.props.postData.map((post) => {
+                
+
+                    return <Card title={<div className="header-wrap" key={post.id}>
+                        <h4>
+                            {post.user.username}
+                        </h4>
+                        <h5>
+                            {post.created_at}
+                        </h5>
+                    </div>
+                    } bordered={true} style={{ width: 400 }}>
                         <div className="ham-image">
-                            <img src={el.image_url} alt="meaty post" />
+                            <img src={post.image_url} alt="meaty post" />
                         </div>
                         <div className="card-icons-wrapper">
-                            <a className="fork-up" onClick={(e)=>this.handleLike(e,el.id)}></a>
-                            <a className="carrot-down"></a>
-                            <p>{el.description} </p>
+                            <a className="fork-up" onClick={(e) => this.handleLike(e, post.id,true)}></a>
+                            <a className="carrot-down" onClick={(e) => this.handleLike(e, post.id,false)}></a>
+                            <p>{post.description} </p>
                         </div>
-                </Card>
-                }
+                    </Card>
+                
             })
-        });
+        
     }
 
     render() {
-       
+
         return (
             <>
-                <Header userData={this.props.userData}/>
+                <Header userData={this.props.userData} />
                 <div className="ham-card">
                     {this.displayData()}
                 </div>
