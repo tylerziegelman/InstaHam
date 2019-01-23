@@ -2,7 +2,10 @@ import React from 'react';
 import axios from "axios"
 import HeaderNoBtns from './HeaderNoBtns'
 import { withRouter } from "react-router";
-
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -51,7 +54,7 @@ export class Register extends React.Component {
     e.preventDefault()
     
     //{username, email, password})
-    axios.post("/create",
+    axios.post(`${host}/create`,
       {
         username: this.state.username,
         email: this.state.email,

@@ -5,7 +5,10 @@ import './Header.css'
 import UploadButton from './UploadButton' 
 import axios from 'axios'
 import { defaultCipherList } from 'constants';
-
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
 class PostModal extends React.Component {
   constructor(){
     super()
@@ -53,7 +56,7 @@ class PostModal extends React.Component {
   
 
     //this.setState({ fileList })
-    axios.post('/uploadImage', formData).then((response) => {
+    axios.post(`${host}/uploadImage`, formData).then((response) => {
         this.setState({
             image_url: response.data
         })
@@ -65,7 +68,7 @@ class PostModal extends React.Component {
 
 handleSubmitPost = () => {
   
-  axios.post('/post', {
+  axios.post(`${host}/post`, {
     user_id: this.props.userData.user_id,
     image_url: this.state.image_url,
     description: this.state.description

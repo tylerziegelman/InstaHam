@@ -11,6 +11,10 @@ import RegisterLoginNavigation from './RegisterLoginNavigation'
 import Header from './Header'
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import PostModal from './PostModal'
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
 
 class App extends Component {
 
@@ -23,7 +27,7 @@ class App extends Component {
  }
 
  componentDidMount() {
-  axios.get("/home").then((obj) => {
+  axios.get(`${host}/home`).then((obj) => {
     
     this.setState({
       data: obj.data.post_data,

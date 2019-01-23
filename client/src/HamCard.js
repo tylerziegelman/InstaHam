@@ -3,6 +3,11 @@ import { Card } from 'antd'
 import './HamCard.css'
 import Header from './Header'
 import axios from 'axios'
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
+
 export default class HamCard extends React.Component {
 
 
@@ -14,7 +19,7 @@ export default class HamCard extends React.Component {
 
     handleLike (e,postId)  {
         e.preventDefault()
-        axios.post('/like', {
+        axios.post(`${host}/like`, {
         
             post_id: postId
             
