@@ -62,7 +62,7 @@ export class Register extends React.Component {
         
       }
     ).then((response) => {
-      
+      localStorage.setItem("instaham-jwt", `Bearer ${response.data.data.token}`)
       this.props.history.push('/home')
     })
 

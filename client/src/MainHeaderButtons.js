@@ -4,6 +4,10 @@ import Button from 'antd/lib/button';
 import PostModal from './PostModal'
 import { withRouter } from "react-router";
 import axios from 'axios'
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
 
 export class MainHeaderButtons extends React.Component  {
    
@@ -13,7 +17,7 @@ constructor() {
 }
 
     handleSignOut() {
-        axios.post('/logout', {
+        axios.post(`${host}/logout`, {
 
         }).then((response) => {
             this.props.history.push('/create')
