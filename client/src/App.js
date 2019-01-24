@@ -28,7 +28,7 @@ class App extends Component {
 
  componentDidMount() {
   axios.get(`${host}/home`).then((obj) => {
-    
+    console.log(obj)
     this.setState({
       posts: obj.data.post_data
       
