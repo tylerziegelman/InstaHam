@@ -8,8 +8,6 @@ const Database = use('Database')
 const s3 = new aws.S3();
 const S3_BUCKET = process.env.bucket
 
-
-
 class PostController {
     
    async uploadImage({request,response}) {
@@ -37,9 +35,10 @@ class PostController {
         
         const {image_url, description} = request.post()
         const post = await Post.create({image_url, description, user_id: user.id })
-       
+        const poster = await Post.query().with('user').fetch()
+        
         response.json({
-            data: post
+            post_data: poster
         })
     }
 

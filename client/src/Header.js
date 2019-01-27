@@ -7,7 +7,7 @@ export default class Header extends React.Component  {
         return(
             <header className="header">
                 <div className="ham-logo"></div>
-                <MainHeaderButtons userData={this.props.userData}/>
+                <MainHeaderButtons submitPost={this.props.submitPost} postData={this.props.postData}/>
             </header>
         )
     }

@@ -24,11 +24,12 @@ class App extends Component {
     posts:[]
    
    }
+   this.handleSubmitPost = this.handleSubmitPost.bind(this)
  }
 
  componentDidMount() {
   axios.get(`${host}/home`).then((obj) => {
-    console.log(obj)
+    
     this.setState({
       posts: obj.data.post_data
       
@@ -36,8 +37,33 @@ class App extends Component {
     })
    
   })
+}
 
+
+handleSubmitPost = (image_url,description,username) => {
+  //need to query the backend to get the username
+  axios.post(`${host}/post`, {
+    image_url: image_url,
+    description: description,
+    username: username
+  },{
+    headers: {
+      Authorization: localStorage.getItem('instaham-jwt')
+    }
+  }).then((response)=>{
+     
+    this.setState({
+      posts: response.data.post_data
+    })
+    
+  })
   
+  // this.handleInputChange(e,{value})
+  
+ 
+  this.setState({
+    visible: false,
+  });
 }
 render() {
     
@@ -56,7 +82,7 @@ render() {
         <Route path='/home'
              component={props=><HamCard 
                                   postData={this.state.posts||[]}
-                                   
+                                  submitPost = {this.handleSubmitPost} 
                                 />}
              />
           </div>

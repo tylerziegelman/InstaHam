@@ -4,6 +4,7 @@ import React from 'react'
 import './Header.css'
 import UploadButton from './UploadButton' 
 import axios from 'axios'
+import { withRouter } from "react-router";
 import { defaultCipherList } from 'constants';
 let host;
 if (process.env.NODE_ENV === 'production') {
@@ -17,6 +18,7 @@ class PostModal extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.submitPostHandler = this.submitPostHandler.bind(this)
   }
   state = { visible: false }
 
@@ -66,26 +68,10 @@ class PostModal extends React.Component {
     
 }
 
-handleSubmitPost = () => {
+submitPostHandler(){
+  this.props.submitPost(this.state.image_url,this.state.description)
   
-  axios.post(`${host}/post`, {
-    user_id: this.props.userData.user_id,
-    image_url: this.state.image_url,
-    description: this.state.description
-  },{
-    headers: {
-      Authorization: localStorage.getItem('instaham-jwt')
-    }
-  })
-  
-  // this.handleInputChange(e,{value})
-  
- 
-  this.setState({
-    visible: false,
-  });
 }
-
 
 
   footer = () => {
@@ -93,7 +79,7 @@ handleSubmitPost = () => {
     <Button onClick= {this.handleCancel}>
       Cancel
     </Button>
-    <Button onClick= {this.handleSubmitPost}>
+    <Button onClick= {this.submitPostHandler}>
       Post
     </Button>
     
@@ -127,4 +113,4 @@ render() {
   );
 }
 }
-export default PostModal
+export default withRouter(PostModal)

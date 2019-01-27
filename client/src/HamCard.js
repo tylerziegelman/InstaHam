@@ -39,7 +39,7 @@ export default class HamCard extends React.Component {
        
             return this.props.postData.map((post) => {
                 
-
+                    //console.log(post)
                     return <Card title={<div className="header-wrap" key={post.id}>
                         <h4>
                             {post.user.username}
@@ -64,10 +64,10 @@ export default class HamCard extends React.Component {
     }
 
     render() {
-
+        // console.log(this.props.submitPost.toString())
         return (
             <>
-                <Header userData={this.props.userData} />
+                <Header submitPost={this.props.submitPost} postData={this.props.postData} />
                 <div className="ham-card">
                     {this.displayData()}
                 </div>
