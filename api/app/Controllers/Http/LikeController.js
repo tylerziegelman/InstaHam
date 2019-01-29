@@ -12,16 +12,17 @@ class LikeController {
                         .where('user_id', user.id)
                         .where('post_id', post_id)
         
-        
+        console.log(likeChecker)
          if(likeChecker.length){
              response.json({
                  message: 'already liked by this user'
              })
          }else {
             const like = await Like.create({user_id:user.id,post_id,type:type})
+            
             response.json({
                 message:`Like was created`,
-                data: like
+                like_data: like
             })
          }
 

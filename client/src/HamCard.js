@@ -15,31 +15,57 @@ export default class HamCard extends React.Component {
     constructor() {
         super()
         this.displayData = this.displayData.bind(this)
+        this.displayLikes = this.displayLikes.bind(this)
     }
 
     handleLike(e, postId,type) {
         e.preventDefault()
         axios.post(`${host}/like`, {
         
-            post_id: postId
-
+            post_id: postId,
+            type: type
         }, {
                 headers: {
                     Authorization: localStorage.getItem('instaham-jwt')
                 }
 
 
+            }).then((response)=>{
+                  console.log(response.data.like_data)
             })
+    }
+
+    displayLikes(){
+      
+      return  this.props.postData.map((post)=>{
+          let disCounter = 0;
+          let likeCounter = 0;
+          return  post.likes.map((like)=>{
+                // console.log(like.type)
+                if(like.type===0) {
+                     disCounter++
+                     console.log(disCounter)
+                     return disCounter
+                }else if(like.type===1) {
+                    likeCounter++
+                    console.log(likeCounter)
+                    return  likeCounter
+                }
+                
+                 
+            })
+       
+        })
+       
     }
 
 
 
-
     displayData(props) {
-       
+       this.displayLikes()
             return this.props.postData.map((post) => {
-                
-                    //console.log(post)
+               
+               
                     return <Card title={<div className="header-wrap" key={post.id}>
                         <h4>
                             {post.user.username}
@@ -54,6 +80,7 @@ export default class HamCard extends React.Component {
                         </div>
                         <div className="card-icons-wrapper">
                             <a className="fork-up" onClick={(e) => this.handleLike(e, post.id,true)}></a>
+                          
                             <a className="carrot-down" onClick={(e) => this.handleLike(e, post.id,false)}></a>
                             <p>{post.description} </p>
                         </div>
