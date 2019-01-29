@@ -14,7 +14,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "aws s3 sync build/ s3://instaham-frontend",
-    "test": "react-scripts test",
+    "test": "node_modules/testcafe/bin/testcafe.js chrome tests/jobs.js --app 'npm start'",
     "eject": "react-scripts eject",
     "toolbox": "react-toolbox-themr"
   },
@@ -27,5 +27,8 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:3333"
+  "proxy": "http://localhost:3333",
+  "devDependencies": {
+    "testcafe": "^0.23.3"
+  }
 }
