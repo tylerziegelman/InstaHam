@@ -3,7 +3,10 @@ import axios from "axios"
 import HeaderNoBtns from './HeaderNoBtns'
 import { withRouter } from "react-router";
 
-
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
 const formValid = ({ formErrors, ...rest }) => {
     let valid = true
 
@@ -43,7 +46,7 @@ export class LoginUser extends React.Component {
         
         //{username, password})
         
-        axios.post("/login",
+        axios.post(`${host}/login`,
        
             {
                 email: this.state.email,
@@ -51,7 +54,7 @@ export class LoginUser extends React.Component {
                
             } 
         ).then((response) => {
-           this.props.history.push('/home')
+           this.props.history.push(`${host}/home`)
            localStorage.setItem("instaham-jwt", `Bearer ${response.data.data.token}`);
         
         })

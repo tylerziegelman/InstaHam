@@ -4,8 +4,12 @@ import React from 'react'
 import './Header.css'
 import UploadButton from './UploadButton' 
 import axios from 'axios'
+import { withRouter } from "react-router";
 import { defaultCipherList } from 'constants';
-
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
 class PostModal extends React.Component {
   constructor(){
     super()
@@ -14,6 +18,7 @@ class PostModal extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.submitPostHandler = this.submitPostHandler.bind(this)
   }
   state = { visible: false }
 
@@ -53,7 +58,7 @@ class PostModal extends React.Component {
   
 
     //this.setState({ fileList })
-    axios.post('/uploadImage', formData).then((response) => {
+    axios.post(`${host}/uploadImage`, formData).then((response) => {
         this.setState({
             image_url: response.data
         })
@@ -63,6 +68,7 @@ class PostModal extends React.Component {
     
 }
 
+<<<<<<< HEAD
 handleSubmitPost = () => {
   axios.post('/post', {
     
@@ -77,8 +83,12 @@ handleSubmitPost = () => {
   this.setState({
     visible: false,
   });
+=======
+submitPostHandler(){
+  this.props.submitPost(this.state.image_url,this.state.description)
+  
+>>>>>>> 6aad582c8c31a555b7088938ce7d46978a9460b7
 }
-
 
 
   footer = () => {
@@ -86,7 +96,7 @@ handleSubmitPost = () => {
     <Button onClick= {this.handleCancel}>
       Cancel
     </Button>
-    <Button onClick= {this.handleSubmitPost}>
+    <Button onClick= {this.submitPostHandler}>
       Post
     </Button>
     
@@ -120,4 +130,4 @@ render() {
   );
 }
 }
-export default PostModal
+export default withRouter(PostModal)
