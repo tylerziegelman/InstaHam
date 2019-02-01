@@ -46,7 +46,7 @@ class UserController {
 
     async getCurrentUser({request,auth,response}){
       const user = await auth.getUser();
-      console.log(user)
+     
       response.json({
           current_user: user
       })

@@ -16,10 +16,10 @@ export default class Header extends React.Component  {
         this.state = {
             user: {}
         }
-        this.getUserDetails = this.getUserDetails.bind(this)
+        
     }
 
-    getUserDetails() {
+    componentDidMount() {
         axios.get(`${host}/user`,
             {
                 headers: {
@@ -30,14 +30,14 @@ export default class Header extends React.Component  {
                 user: obj.data.current_user
             })
         })
-         return this.state.user.username
+         
     }
     render(){
      
         return(
             <header className="header">
                 <div className="ham-logo"></div>
-                <span className="user-greeting">Welcome: {this.getUserDetails}</span>
+                <span className="user-greeting">Welcome: {this.state.user.username}</span>
                 <MainHeaderButtons submitPost={this.props.submitPost} postData={this.props.postData}/>
             </header>
         )
