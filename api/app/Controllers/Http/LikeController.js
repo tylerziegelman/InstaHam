@@ -14,9 +14,10 @@ class LikeController {
         
         console.log(likeChecker)
          if(likeChecker.length){
-             response.json({
-                 message: 'already liked by this user'
-             })
+            response.status(400).json({
+                status: 'error',
+                message: 'Already Liked By User'
+              })
          }else {
             const like = await Like.create({user_id:user.id,post_id,type:type})
             
