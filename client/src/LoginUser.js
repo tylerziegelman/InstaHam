@@ -54,7 +54,7 @@ export class LoginUser extends React.Component {
                
             } 
         ).then((response) => {
-           this.props.history.push(`${host}/home`)
+           this.props.history.push(`/home`)
            localStorage.setItem("instaham-jwt", `Bearer ${response.data.data.token}`);
         
         })

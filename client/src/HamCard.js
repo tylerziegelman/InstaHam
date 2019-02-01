@@ -10,62 +10,43 @@ if (process.env.NODE_ENV === 'production') {
 
 export default class HamCard extends React.Component {
 
-
-
     constructor() {
         super()
         this.displayData = this.displayData.bind(this)
-        this.displayLikes = this.displayLikes.bind(this)
-    }
-
-    handleLike(e, postId,type) {
-        e.preventDefault()
-        axios.post(`${host}/like`, {
         
-            post_id: postId,
-            type: type
-        }, {
-                headers: {
-                    Authorization: localStorage.getItem('instaham-jwt')
-                }
-
-
-            }).then((response)=>{
-                  console.log(response.data.like_data)
-            })
     }
 
-    displayLikes(){
+   
+
+
+
+    // displayLikes(){
       
-      return  this.props.postData.map((post)=>{
-          let disCounter = 0;
-          let likeCounter = 0;
-          return  post.likes.map((like)=>{
-                // console.log(like.type)
-                if(like.type===0) {
-                     disCounter++
-                     console.log(disCounter)
-                     return disCounter
-                }else if(like.type===1) {
-                    likeCounter++
-                    console.log(likeCounter)
-                    return  likeCounter
-                }
-                
-                 
-            })
+    //   const likesNum =  this.props.postData.map((post)=>{
+         
+    //       return  post.likes.filter((like)=>{
+    //             return like.type===1                    
+            
+    //         })
        
-        })
-       
-    }
+    //     })
+    //    console.log(likesNum)
+    // }
 
 
 
     displayData(props) {
-       this.displayLikes()
             return this.props.postData.map((post) => {
                
-               
+                const likesNum =  post.likes && post.likes.filter((like)=>{
+                    return like.type===1                    
+                
+                }).length
+
+                const dislikesNum = post.likes &&  post.likes.filter((like)=>{
+                    return like.type===0                    
+                
+                }).length
                     return <Card title={<div className="header-wrap" key={post.id}>
                         <h4>
                             {post.user.username}
@@ -79,9 +60,10 @@ export default class HamCard extends React.Component {
                             <img src={post.image_url} alt="meaty post" />
                         </div>
                         <div className="card-icons-wrapper">
-                            <a className="fork-up" onClick={(e) => this.handleLike(e, post.id,true)}></a>
-                          
-                            <a className="carrot-down" onClick={(e) => this.handleLike(e, post.id,false)}></a>
+                            <a className="fork-up" onClick={(e) => this.props.handleLike(e, post.id,true)}></a>
+                            <span>{likesNum}</span>
+                            <a className="carrot-down" onClick={(e) => this.props.handleLike(e, post.id,false)}></a>
+                            <span>{dislikesNum}</span>
                             <p>{post.description} </p>
                         </div>
                     </Card>

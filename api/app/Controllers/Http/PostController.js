@@ -28,7 +28,6 @@ class PostController {
             return "broke"
         }
     }
-    
 
     async createPost({request,auth,response}) {
         const user = await auth.getUser()

@@ -22,11 +22,14 @@ constructor() {
         }).then((response) => {
             this.props.history.push('/create')
             localStorage.clear()
+           
         })
     }
     render(){
+       
         return(
             <div className="button-container">
+                
                 <PostModal submitPost={this.props.submitPost} postData={this.props.postData}/>
                 {/* <Button className="post-button" type="default" onClick={this.showModal}>Post</Button> */}
                 <Button className="signout-button" type="default" onClick={this.handleSignOut}>Sign-out</Button>

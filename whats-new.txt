@@ -16,4 +16,13 @@
         -route create an login routes to frontend
         -hook up login form
         -check for token to go to homepage
-        
+    
+1/29
+-added like displaying 
+- 
+
+
+todo-1/30 - lift state of register form && login form for username - give this.state.username to header and 
+          - display the username in the header
+          - use the displayed username in home to test that it displays in the header 
+          - also test that the user can see a card with the own username and a card with other username

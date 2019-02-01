@@ -8,13 +8,14 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "testcafe": "^0.23.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "aws s3 sync build/ s3://instaham-frontend",
-    "test": "node_modules/testcafe/bin/testcafe.js chrome tests/jobs.js --app 'npm start'",
+    "test": "node_modules/testcafe/bin/testcafe.js chrome tests/home.js --app 'npm start'",
     "eject": "react-scripts eject",
     "toolbox": "react-toolbox-themr"
   },
@@ -28,7 +29,5 @@
     "not op_mini all"
   ],
   "proxy": "http://localhost:3333",
-  "devDependencies": {
-    "testcafe": "^0.23.3"
-  }
+  "devDependencies": {}
 }

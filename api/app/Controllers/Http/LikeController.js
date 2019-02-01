@@ -20,9 +20,13 @@ class LikeController {
          }else {
             const like = await Like.create({user_id:user.id,post_id,type:type})
             
+            const post = await Post.query().with('user')
+                            .withCount('likes').with('likes').fetch();
+
             response.json({
                 message:`Like was created`,
-                like_data: like
+                like_data: like,
+                post_data: post
             })
          }
 

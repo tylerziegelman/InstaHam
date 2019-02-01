@@ -98,7 +98,7 @@ export class Register extends React.Component {
 
     }
     this.setState({ formErrors, [name]: value }, () => console.log(this.state))
-
+    
   }
 
 

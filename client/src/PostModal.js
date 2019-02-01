@@ -68,26 +68,9 @@ class PostModal extends React.Component {
     
 }
 
-<<<<<<< HEAD
-handleSubmitPost = () => {
-  axios.post('/post', {
-    
-    image_url: this.state.image_url,
-    description: this.state.description
-  },{
-    headers: {
-      Authorization: localStorage.getItem('instaham-jwt')
-    }
-  })
- 
-  this.setState({
-    visible: false,
-  });
-=======
 submitPostHandler(){
   this.props.submitPost(this.state.image_url,this.state.description)
   
->>>>>>> 6aad582c8c31a555b7088938ce7d46978a9460b7
 }
 
 

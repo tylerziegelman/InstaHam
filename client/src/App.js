@@ -25,31 +25,50 @@ class App extends Component {
    
    }
    this.handleSubmitPost = this.handleSubmitPost.bind(this)
+   this.handleLike = this.handleLike.bind(this)
  }
 
- componentDidMount() {
-<<<<<<< HEAD
-  axios.get("/home").then((obj) => {
+ handleLike(e, postId,type) {
+  e.preventDefault()
+  axios.post(`${host}/like`, {
   
-=======
+      post_id: postId,
+      type: type
+  }, {
+          headers: {
+              Authorization: localStorage.getItem('instaham-jwt')
+          }
+
+
+      }).then((response)=>{
+          this.setState({
+              posts: response.data.post_data
+              
+            })
+            //console.log(response.data.like_data)
+  
+  })
+}
+
+
+ componentDidMount() {
   axios.get(`${host}/home`).then((obj) => {
     
->>>>>>> 6aad582c8c31a555b7088938ce7d46978a9460b7
     this.setState({
       posts: obj.data.post_data
       
       
     })
-   return(obj.data.post_data.map((post)=>{
-    let counter = 0;
-    return(post.likes.forEach((like)=>{
-      if (like.type === 0) {
-        counter++
-        console.log(`post ${like.post_id} has ${counter} dislikes`)
-      }else if(like.type===1) {console.log(`post ${like.post_id} has ${counter} likes`)}
-    }))
+  //  return(obj.data.post_data.map((post)=>{
+  //   let counter = 0;
+  //   return(post.likes.forEach((like)=>{
+  //     if (like.type === 0) {
+  //       counter++
+  //       console.log(`post ${like.post_id} has ${counter} dislikes`)
+  //     }else if(like.type===1) {console.log(`post ${like.post_id} has ${counter} likes`)}
+  //   }))
     
-   }))
+  //  }))
   })
 }
 
@@ -79,6 +98,9 @@ handleSubmitPost = (image_url,description,username) => {
     visible: false,
   });
 }
+
+
+
 render() {
     
     return (
@@ -95,6 +117,7 @@ render() {
         <Route path="/login" render={(props)=> <LoginUser/>}/>
         <Route path='/home'
              component={props=><HamCard 
+                                  handleLike={this.handleLike}
                                   postData={this.state.posts||[]}
                                   submitPost = {this.handleSubmitPost} 
                                 />}
