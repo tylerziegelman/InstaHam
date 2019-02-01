@@ -24,30 +24,10 @@ class App extends Component {
    
    }
    this.handleSubmitPost = this.handleSubmitPost.bind(this)
-   this.handleLike = this.handleLike.bind(this)
+
  }
 
- handleLike(e, postId,type) {
-  e.preventDefault()
-  axios.post(`${host}/like`, {
-  
-      post_id: postId,
-      type: type
-  }, {
-          headers: {
-              Authorization: localStorage.getItem('instaham-jwt')
-          }
 
-
-      }).then((response)=>{
-          this.setState({
-              posts: response.data.post_data
-              
-            })
-            //console.log(response.data.like_data)
-  
-  })
-}
 
 
 

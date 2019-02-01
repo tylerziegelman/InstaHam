@@ -49,6 +49,28 @@ class HamCard extends React.Component {
         })
       }
 
+      handleLike(e, postId,type) {
+        e.preventDefault()
+        axios.post(`${host}/like`, {
+        
+            post_id: postId,
+            type: type
+        }, {
+                headers: {
+                    Authorization: localStorage.getItem('instaham-jwt')
+                }
+      
+      
+            }).then((response)=>{
+                this.setState({
+                    posts: response.data.post_data
+                    
+                  })
+                  //console.log(response.data.like_data)
+        
+        }).catch((error)=>{alert(error.response.data.message)})
+      }
+
 
     displayData(props) {
             return this.state.posts.map((post) => {
@@ -75,9 +97,9 @@ class HamCard extends React.Component {
                             <img src={post.image_url} alt="meaty post" />
                         </div>
                         <div className="card-icons-wrapper">
-                            <a className="fork-up" onClick={(e) => this.props.handleLike(e, post.id,true)}></a>
+                            <a className="fork-up" onClick={(e) => this.handleLike(e, post.id,true)}></a>
                             <span>{likesNum}</span>
-                            <a className="carrot-down" onClick={(e) => this.props.handleLike(e, post.id,false)}></a>
+                            <a className="carrot-down" onClick={(e) => this.handleLike(e, post.id,false)}></a>
                             <span>{dislikesNum}</span>
                             <p>{post.description} </p>
                         </div>
