@@ -24,8 +24,9 @@ Route.get('/', () => {
 Route.post('/create', "UserController.createUser")
 Route.post('/login', "UserController.login")
 Route.post('/logout', "UserController.logOut")
+Route.get('/user', "UserController.getCurrentUser")
 // routes for post
-Route.get('/home', 'PostController.getAllPosts')
+Route.get('/home', 'PostController.getAllPosts').middleware(['auth:jwt'])
 Route.post('/post', 'PostController.createPost').middleware(['auth:jwt'])
 
 Route.post('/uploadImage', 'PostController.uploadImage')

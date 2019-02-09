@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Header.css'
-
 import { BrowserRouter, Route } from "react-router-dom";
 import HamCard from './HamCard'
 import axios from 'axios'
@@ -11,6 +10,10 @@ import RegisterLoginNavigation from './RegisterLoginNavigation'
 import Header from './Header'
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import PostModal from './PostModal'
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
 
 class App extends Component {
 
@@ -20,21 +23,44 @@ class App extends Component {
     posts:[]
    
    }
+   this.handleSubmitPost = this.handleSubmitPost.bind(this)
+
  }
 
- componentDidMount() {
-  axios.get("/home").then((obj) => {
-    
-    this.setState({
-      posts: obj.data.post_data
-      
-      
-    })
-   
-  })
 
+
+
+
+
+
+handleSubmitPost = (image_url,description,username) => {
+  //need to query the backend to get the username
+  axios.post(`${host}/post`, {
+    image_url: image_url,
+    description: description,
+    username: username
+  },{
+    headers: {
+      Authorization: localStorage.getItem('instaham-jwt')
+    }
+  }).then((response)=>{
+     
+    this.setState({
+      posts: response.data.post_data
+    })
+    
+  })
   
+  // this.handleInputChange(e,{value})
+  
+ 
+  this.setState({
+    visible: false,
+  });
 }
+
+
+
 render() {
     
     return (
@@ -51,8 +77,9 @@ render() {
         <Route path="/login" render={(props)=> <LoginUser/>}/>
         <Route path='/home'
              component={props=><HamCard 
+                                  handleLike={this.handleLike}
                                   postData={this.state.posts||[]}
-                                   
+                                  submitPost = {this.handleSubmitPost} 
                                 />}
              />
           </div>
@@ -64,4 +91,3 @@ render() {
 }
 
 export default App;
-

@@ -8,8 +8,6 @@ const Database = use('Database')
 const s3 = new aws.S3();
 const S3_BUCKET = process.env.bucket
 
-
-
 class PostController {
     
    async uploadImage({request,response}) {
@@ -30,16 +28,16 @@ class PostController {
             return "broke"
         }
     }
-    
 
     async createPost({request,auth,response}) {
         const user = await auth.getUser()
         
         const {image_url, description} = request.post()
         const post = await Post.create({image_url, description, user_id: user.id })
-       
+        const poster = await Post.query().with('user').fetch()
+        
         response.json({
-            data: post
+            post_data: poster
         })
     }
 
@@ -47,7 +45,7 @@ class PostController {
         const post = await Post.query().with('user')
                             .withCount('likes').with('likes').fetch();
         // const user = await User.all()
-        
+       
         response.json({
              post_data: post,
             //  user_data: user

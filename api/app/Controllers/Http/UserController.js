@@ -24,8 +24,7 @@ class UserController {
           
         )
         // return response.redirect('/home')
-        console.log(token)
-          console.log("login works")
+        
         return response.json({
           status: 'success!',
           data: token
@@ -39,9 +38,22 @@ class UserController {
       }
      
     }
+
     async logOut({auth}){
       await auth.authenticator('jwt').revokeTokens()
     }
+
+
+    async getCurrentUser({request,auth,response}){
+      const user = await auth.getUser();
+     
+      response.json({
+          current_user: user
+      })
+  }
+  
+
+
 }
 
 
