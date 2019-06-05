@@ -1,0 +1,106 @@
+body {
+    background: url('./assets/wiggle.svg');
+    background-color: rgba(255,255,255,0.1);
+    
+}
+
+.ant-card {
+    border: 2px solid rgb(0,0,0);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+    margin-top: 50px;
+    box-shadow: 2px 1px 8px #333;
+}
+
+
+.ant-card:first-child {
+    margin-top: 150px;
+}
+
+.ant-card-head {
+    border-bottom: 2px solid black;
+}
+.card-main {
+    width: 400px;
+    
+}
+.ham-image img {
+    width: 100%;
+}
+
+.card-head {
+    height: 50px;
+    border-bottom: 2px solid black;
+}
+
+.head-date {
+
+}
+
+.ant-card-body {
+    padding: 0;
+}
+
+.ham-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    
+}
+
+
+.ham-image {
+    
+    border-bottom: 2px solid black;
+}
+
+.ham-card p {
+    font-size: 1.5em;
+    
+    padding: 5px;
+    padding-left: 20px;
+    text-align: left;
+
+}
+
+.header-wrap {
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+    min-height: 100%;
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom: -10px;
+}
+
+.header-wrap h5 {
+    color: #000;
+}
+
+
+
+.fork-up {
+    background-image: url('./assets/forks-up.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-height: 40px;
+    min-width: 40px;
+}
+.carrot-down {
+    background-image: url('./assets/carrots-down.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-height: 42px;
+    min-width: 42px;
+}
+
+.card-icons-wrapper {
+    display: flex;
+    margin-left: 5%;
+    margin-top: 5px;
+    
+    
+}
+

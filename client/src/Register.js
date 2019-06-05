@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from "axios"
-import Header from './Header'
-
-//email Regexpression is for the password so it can be any characters has .com or .net on the end
+import HeaderNoBtns from './HeaderNoBtns'
+import { withRouter } from "react-router";
+let host;
+if (process.env.NODE_ENV === 'production') {
+  host = 'https://instaham-api.herokuapp.com'
+}else {host = 'http://localhost:3000'}
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-)
+);
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true
@@ -27,120 +30,92 @@ const formValid = ({ formErrors, ...rest }) => {
 }
 
 
-export default class Login extends React.Component {
+export class Register extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      firstName: null,
-      lastName: null,
-      email: null,
+      username: null,
       password: null,
+      email: null,
       formErrors: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
+        username: "",
+        password: "",
+        email: ""
       }
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
-  //e.preventDefault() keeps page from refreshing after clicking submit
-  handleSubmit = e => {
-    axios.post("/create")
-    e.preventDefault()
 
-    if (formValid(this.state)) {
-      console.log(`
-        --SUBMITTING--
-        First Name: ${this.state.firstName}
-        Last Name: ${this.state.lastName}
-        Email: ${this.state.email}
-        Password: ${this.state.password}
-      `)
-    } else {
-      console.error(`Form invalid - display error mesage`)
-    }
+
+  //e.preventDefault() keeps page from refreshing after clicking submit
+  handleSubmit(e) {
+    e.preventDefault()
+    
+    //{username, email, password})
+    axios.post(`${host}/create`,
+      {
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+        
+      }
+    ).then((response) => {
+      localStorage.setItem("instaham-jwt", `Bearer ${response.data.data.token}`)
+      this.props.history.push('/home')
+    })
+
   }
 
   handleChange = e => {
     e.preventDefault()
     const { name, value } = e.target
     let formErrors = this.state.formErrors
-    
+
     //switch is a cleaner else if statement
     //using ternary operator which is the ? so if value.length is less than 2 first string is executed if not second 
 
 
     switch (name) {
-      case "firstName":
-        formErrors.firstName =
-          value.length < 2 ? 'minimum 2 characters required' : ""
-        break;
-      case "lastName":
-        formErrors.lastName =
-          value.length < 2 ? 'minimum 2 characters required' : ""
-        break;
-      case "email":
-        formErrors.email =
-          emailRegex.test(value) ? '' : "Invalid email address"
+      case "username":
+        formErrors.username =
+          value.length < 6
+            ? 'minimum 6 characters required' : ""
         break;
       case "password":
         formErrors.password =
           value.length < 6
             ? 'minimum 6 characters required' : ""
         break;
+      case "email":
+        formErrors.email = emailRegex.test(value)
+          ? ""
+          : "invalid email address";
+        break;
       default:
         break;
 
     }
     this.setState({ formErrors, [name]: value }, () => console.log(this.state))
-
+    
   }
 
 
   render() {
     const { formErrors } = this.state
     return (
-      <>
-      <Header/>
-      <div className="wrapper">
       
+      <div className="wrapper">
+        <HeaderNoBtns />
         <div className="form-wrapper">
-          <h1>Create Account</h1>
+          <h1>Register</h1>
           <form onSubmit={this.handleSubmit} noValidate>
-            <div className="firstName">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                className={formErrors.firstName.length > 0 ? "error" : null}
-                placeholder="First Name"
-                type="text"
-                name="firstName"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.firstName.length > 0 && (
-                <span className="errorMessage">{formErrors.firstName}</span>
-              )}
-            </div>
-            <div className="lastName">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                className={formErrors.lastName.length > 0 ? "error" : null}
-                placeholder="Last Name"
-                type="text"
-                name="lastName"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.lastName.length > 0 && (
-                <span className="errorMessage">{formErrors.lastName}</span>
-              )}
-            </div>
             <div className="email">
-              <label htmlFor="email">email</label>
+              <label htmlFor="email"></label>
               <input
                 className={formErrors.email.length > 0 ? "error" : null}
-                placeholder="email"
+                placeholder="Email"
                 type="email"
                 name="email"
                 noValidate
@@ -150,8 +125,24 @@ export default class Login extends React.Component {
                 <span className="errorMessage">{formErrors.email}</span>
               )}
             </div>
+
+            <div className="username">
+              <label htmlFor="username"></label>
+              <input
+                className={formErrors.username.length > 0 ? "error" : null}
+                placeholder="Username"
+                type="username"
+                name="username"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.username.length > 0 && (
+                <span className="errorMessage">{formErrors.username}</span>
+              )}
+            </div>
+
             <div className="password">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password"></label>
               <input
                 className={formErrors.password.length > 0 ? "error" : null}
                 placeholder="Password"
@@ -164,19 +155,20 @@ export default class Login extends React.Component {
                 <span className="errorMessage">{formErrors.password}</span>
               )}
             </div>
+
             <div className="createAccount">
-              <button type="submit">Create Account</button>
-              <small>Already have an Account?</small>
+              <button onClick={this.handleSubmit}>Create Account</button>
             </div>
           </form>
 
         </div>
 
       </div>
-    </>
     )
   }
 
 
 
 }
+
+export default withRouter(Register);

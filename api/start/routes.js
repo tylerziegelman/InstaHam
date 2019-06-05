@@ -20,4 +20,16 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+// routes for user
 Route.post('/create', "UserController.createUser")
+Route.post('/login', "UserController.login")
+Route.post('/logout', "UserController.logOut")
+Route.get('/user', "UserController.getCurrentUser")
+// routes for post
+Route.get('/home', 'PostController.getAllPosts').middleware(['auth:jwt'])
+Route.post('/post', 'PostController.createPost').middleware(['auth:jwt'])
+
+Route.post('/uploadImage', 'PostController.uploadImage')
+
+ //routes for like
+Route.post('/like', 'LikeController.createLike')
